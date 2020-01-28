@@ -14,7 +14,9 @@
             'worldnews',
             'imsorryjon'
         ]
-        fetchReddit(subs)
+        fetchReddit(subs).then(posts => {
+            console.log(posts)
+        })
     </script>
 
 </html>
