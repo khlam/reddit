@@ -7,6 +7,7 @@ function cleanData(redditResponse) {
                 'rank': null,
                 'title': post['data']['title'],
                 'author': post['data']['author'],
+                'subreddit': post['data']['subreddit'],
                 'commentsURL': `https://reddit.com${post['data']['permalink']}`,
                 'commentsNumber': post['data']['num_comments'],
                 'upvotes': post['data']['score'],
@@ -32,7 +33,9 @@ async function getPosts(sub) {
             var status = xhr.status;
             if (status === 200) {
                 console.log(`${sub} retrieved`)
-                return resolve(xhr.response['data']['children'])
+                let response = xhr.response['data']['children']
+                console.log(response)
+                return resolve(response)
             }
         };
         xhr.send();
@@ -41,14 +44,17 @@ async function getPosts(sub) {
 
 // Main function
 function main(subReddits) {
-    let posts = []
-    subReddits.forEach((sub, index, array) => {
-        getPosts(sub).then(resolvedPosts => {
-            cleanData(resolvedPosts).then( cleaned => {
-                posts.push(cleaned)
-                console.log(posts.flat())
+    if (subReddits.length !== 0) {
+        let posts = []
+        subReddits.forEach((sub, index, array) => {
+            getPosts(sub).then(resolvedPosts => {
+                cleanData(resolvedPosts).then( cleaned => {
+                    posts.push(cleaned)
+                    console.log(posts.flat())
+                })
             })
         })
-    })
+    }
+    
 }
 

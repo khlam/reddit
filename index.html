@@ -4,16 +4,15 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="./js/fetchReddit.js"></script>
+    <script src="./js/getParams.js"></script>
 
     <body>
-        Hello world!
+        <a href = "?subreddits=worldnews;imsorryjon;news;buildapcsales;linux;privacy">test</a>
     </body>
     
     <script>
-        let subs = [
-            'worldnews',
-            'imsorryjon'
-        ]
+        let subs = readParams('subreddits')
+        console.log(subs)
         main(subs)
     </script>
 
