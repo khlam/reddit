@@ -21,7 +21,7 @@ function cleanData(redditResponse) {
     })
 }
 
-// Fetches posts from reddit through my heroku-deployed cors-anywhere proxy for getting around the clickjacking protection
+// Fetches posts from reddit through my heroku-deployed cors-anywhere proxy
 async function getPosts(sub) {
     return await new Promise((resolve) => {
         subURL = `https://khl-reddit-cors.herokuapp.com/https://reddit.com/r/${sub}.json` // my personal cors-anywhere deployment https://github.com/khlam/cors-anywhere
@@ -34,7 +34,7 @@ async function getPosts(sub) {
             if (status === 200) {
                 console.log(`${sub} retrieved`)
                 let response = xhr.response['data']['children']
-                console.log(response)
+                //console.log(response)
                 return resolve(response)
             }
         };
@@ -50,11 +50,13 @@ function main(subReddits) {
             getPosts(sub).then(resolvedPosts => {
                 cleanData(resolvedPosts).then( cleaned => {
                     posts.push(cleaned)
-                    console.log(posts.flat())
+                    //console.log(posts.flat())
+                    setOrder(posts.flat()).then(result => {
+                        createTable(result)
+                    })
                 })
             })
         })
     }
-    
 }
 
