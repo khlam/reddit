@@ -8,7 +8,7 @@ function cleanData(redditResponse) {
                 'title': post['data']['title'],
                 'author': post['data']['author'],
                 'subreddit': post['data']['subreddit'],
-                'commentsURL': `https://reddit.com${post['data']['permalink']}`,
+                'commentsURL': `https://old.reddit.com${post['data']['permalink']}`,
                 'commentsNumber': post['data']['num_comments'],
                 'upvotes': post['data']['score'],
                 'createdUTC': post['data']['created_utc'],
