@@ -4,6 +4,7 @@ function cleanData(redditResponse) {
         let cleaned = []
         redditResponse.forEach(post => {
             post = {
+                'rank': null,
                 'title': post['data']['title'],
                 'author': post['data']['author'],
                 'commentsURL': `https://reddit.com${post['data']['permalink']}`,
@@ -20,8 +21,8 @@ function cleanData(redditResponse) {
 }
 
 // Fetches posts from reddit through my heroku-deployed cors-anywhere proxy for getting around the clickjacking protection
-function getPosts(sub) {
-    return new Promise((resolve) => {
+async function getPosts(sub) {
+    return await new Promise((resolve) => {
         subURL = `https://khl-reddit-cors.herokuapp.com/https://reddit.com/r/${sub}.json` // my personal cors-anywhere deployment https://github.com/khlam/cors-anywhere
         console.log(`Fetching ${subURL}`)
         var xhr = new XMLHttpRequest();
@@ -38,20 +39,15 @@ function getPosts(sub) {
     })
 }
 
-function fetchReddit(subReddits) {
-    return new Promise((resolve) => {
-        let posts = []
-        subReddits.forEach((sub, index, array) => {
-            getPosts(sub).then(resolvedPosts => {
-                cleanData(resolvedPosts).then( cleaned => {
-                    posts.push(cleaned)
-                })
+// Main function
+function main(subReddits) {
+    let posts = []
+    subReddits.forEach((sub, index, array) => {
+        getPosts(sub).then(resolvedPosts => {
+            cleanData(resolvedPosts).then( cleaned => {
+                posts.push(cleaned)
+                console.log(posts.flat())
             })
-            if (index === array.length -1){
-                console.log(index)
-                console.log(array.length - 1 )
-                resolve(posts)
-            }
         })
     })
 }
