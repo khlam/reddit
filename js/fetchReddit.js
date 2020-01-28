@@ -1,7 +1,7 @@
 function fetchReddit(subReddits) {
     let posts = []
     subReddits.forEach(sub => {
-        subURL = `https://khl-reddit-cors.herokuapp.com/https://reddit.com/r/${sub}.json`
+        subURL = `https://khl-reddit-cors.herokuapp.com/https://reddit.com/r/${sub}.json` // my personal cors-anywhere deployment https://github.com/khlam/cors-anywhere
         console.log(`Fetching ${subURL}`)
         var xhr = new XMLHttpRequest();
         xhr.open('GET', subURL, true);
