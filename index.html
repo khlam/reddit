@@ -13,6 +13,7 @@
             <div class= "col-10">
                 <h2><a href="https://khlam.github.io/" style="text-decoration:none">khlam.github.io</a>/reddit</h2>
                 <h4 id="title-banner">Whitelisted-only Reddit browsing without an account.</h4>
+                <p id='status'>Showing posts from </p>
             </div>
         </div>
         <div class="row">
@@ -25,10 +26,7 @@
         let subs = readParams('subreddits')
         console.log(subs)
         main(subs)
-
-        $(document).ready(function(){
-            $(this).scrollTop(0);
-        });
+        setSubDisplay(subs)
     </script>   
 
 </html>

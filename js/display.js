@@ -44,6 +44,10 @@ function createTable(allPosts) {
     return result;
 }
 
-function setSubDisplay() {
-    
+function setSubDisplay(subs) {
+    let sub_list = ""
+    subs.forEach(sub => {
+        sub_list += `<a href='https://old.reddit.com/r/${sub}'>r/${sub}</a> `
+    })
+    document.getElementById("status").innerHTML = `${sub_list}`
 }
