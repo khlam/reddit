@@ -43,3 +43,7 @@ function createTable(allPosts) {
     //console.log(result)
     return result;
 }
+
+function setSubDisplay() {
+    
+}

@@ -34,7 +34,7 @@ async function getPosts(sub) {
             if (status === 200) {
                 console.log(`${sub} retrieved`)
                 let response = xhr.response['data']['children']
-                //console.log(response)
+                console.log(response)
                 return resolve(response)
             }
         };

@@ -9,11 +9,15 @@
     <script src="./js/sortPosts.js"></script>
 
     <body>
-        <a href = "?subreddits=worldnews">?subreddits=worldnews</a>
-        <br>
-        <a href = "?subreddits=worldnews;imsorryjon;news;buildapcsales;linux;privacy;videos">?subreddits=worldnews;imsorryjon;news;buildapcsales;linux;privacy;videos</a>
-        
-        <div id="display"></div>
+        <div class="row">
+            <div class= "col-10">
+                <h2><a href="https://khlam.github.io/" style="text-decoration:none">khlam.github.io</a>/reddit</h2>
+                <h4 id="title-banner">Whitelisted-only Reddit browsing without an account.</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div id="display">No subreddits specified :( See <a href="./usage.html">Usage</a></div>
+        </div>
     
     </body>
     
@@ -21,6 +25,10 @@
         let subs = readParams('subreddits')
         console.log(subs)
         main(subs)
-    </script>
+
+        $(document).ready(function(){
+            $(this).scrollTop(0);
+        });
+    </script>   
 
 </html>
